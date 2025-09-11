@@ -654,7 +654,16 @@ export default function AyushMappingApp() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-      <div className="w-full max-w-2xl bg-white shadow-lg rounded-2xl p-6">
+      <div className="w-full max-w-2xl bg-white shadow-lg rounded-2xl p-6 relative">
+        {selected && 
+          <button
+            onClick={() => setSelected(null)}
+            className="mb-3 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 absolute"
+          >
+            ← Back
+          </button>
+        }
+
         <h1 className="text-2xl font-bold mb-4 text-center">
           AYUSH → ICD-11
         </h1>
@@ -706,10 +715,8 @@ export default function AyushMappingApp() {
                 <h3 className="font-medium">ICD-11 TM2 Mapping</h3>
                 <p>
                   Code:{" "}
-                  <span className="font-mono">
-                    {selected.mappings.tm2.code}
-                  </span>{" "}
-                  — {selected.mappings.tm2.display}
+                  <span className="font-mono">{selected.mappings.tm2.code}</span> —{" "}
+                  {selected.mappings.tm2.display}
                 </p>
               </div>
 
@@ -737,10 +744,8 @@ export default function AyushMappingApp() {
                 ) : (
                   <p>
                     Code:{" "}
-                    <span className="font-mono">
-                      {selected.mappings.biomed.code}
-                    </span>{" "}
-                    — {selected.mappings.biomed.display}
+                    <span className="font-mono">{selected.mappings.biomed.code}</span> —{" "}
+                    {selected.mappings.biomed.display}
                   </p>
                 )}
               </div>
@@ -756,9 +761,7 @@ export default function AyushMappingApp() {
                 onClick={() => setSelected(item)}
               >
                 <h3 className="font-medium">{item.term}</h3>
-                <p className="text-sm text-gray-500 truncate">
-                  {item.definition}
-                </p>
+                <p className="text-sm text-gray-500 truncate">{item.definition}</p>
               </div>
             ))}
           </div>
